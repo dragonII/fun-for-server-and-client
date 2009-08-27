@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#define G_BLOCK_SIZE 1024
+#define FILE_MODE (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
+static void bail(const char *on_what)
+{
+	fputs(strerror(errno), stderr);
+	fputs(": ", stderr);
+	fputs(on_what, stderr);
+	fputc('\n', stderr);
+	exit(1);
+}
+
+int main(int argc, char **argv)
+{
+	int z;
+	char *srvr_addr = NULL;
+	struct sockaddr_in addr_srvr;
+	socklen_t len_inet;
+	int s, fd;
+	char fbuf[G_BLOCK_SIZE];
+	char *file_name = "/dev/null";
+	int maxfdp;
+	fd_set rset, wset;
+
+	srvr_addr = "192.168.3.39";
+
+	if(argc >= 2)
+		file_name = argv[1];
+
+	memset(&addr_srvr, 0, sizeof(addr_srvr));
+	addr_srvr.sin_family = AF_INET;
+	addr_srvr.sin_port = htons(atoi("8888"));
+	addr_srvr.sin_addr.s_addr = inet_addr(srvr_addr);
+
+	len_inet = sizeof(addr_srvr);
+
+	s = socket(PF_INET, SOCK_STREAM, 0);
+	if(s == -1)
+		bail("socket()");
+	printf("Socket created\n");
+
+	z = connect(s, (struct sockaddr *)&addr_srvr, len_inet);
+	if(z == -1)
+		bail("connect(2)");
+	printf("Connected\n");
+
+	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, FILE_MODE);
+	if(fd < 0)
+		bail("open failed");
+	printf("file opened\n");
+	
+	maxfdp = fd + 1;
+	
+	for(;;)
+	{
+		FD_ZERO(&rset);
+		FD_ZERO(&wset);
+
+		FD_SET
+
+		i_ret = select(maxfdp, &rset, &write, NULL, NULL);
+		
+
+		
+
+
+	}
+	
+	memset(fbuf, 0, G_BLOCK_SIZE);
+	z = read(s, fbuf, sizeof(fbuf));
+	while(z > 0)
+	{
+		if(write(fd, fbuf, z) < 0)
+			bail("write file error");
+		z = read(s, fbuf, sizeof(fbuf));
+		if(z < 0)
+		{
+			printf("Failed pid = %d\n", getpid());
+			bail("read from socket error");
+		}
+		usleep(1000);
+	}
+
+	close(fd);
+	close(s);
+
+	return 0;
+}
+
