@@ -1,10 +1,10 @@
 CC=gcc
 CFLAGS=-O2 -Wall
-SOURCE=sclient.c
+SOURCE=sserver.c sserver.h
 
 OBJ=$(SOURCE:.c=.o)
 
-TARGET=nsclient
+TARGET=nsserver
 
 .c.o:
 	$(CC) -c $(CFLAGS) $<
