@@ -25,6 +25,7 @@ static void bail(const char *on_what)
 int main(int argc, char **argv)
 {
 	int z;
+	int i_ret = 0, sizetowrite = 0;
 	char *srvr_addr = NULL;
 	struct sockaddr_in addr_srvr;
 	socklen_t len_inet;
@@ -34,7 +35,7 @@ int main(int argc, char **argv)
 	int maxfdp;
 	fd_set rset, wset;
 
-	srvr_addr = "192.168.3.39";
+	srvr_addr = "192.168.3.98";
 
 	if(argc >= 2)
 		file_name = argv[1];
@@ -62,37 +63,45 @@ int main(int argc, char **argv)
 	printf("file opened\n");
 	
 	maxfdp = fd + 1;
+	FD_ZERO(&rset);
+	FD_ZERO(&wset);
 	
 	for(;;)
 	{
-		FD_ZERO(&rset);
-		FD_ZERO(&wset);
+		FD_SET(s, &rset);
 
-		FD_SET
-
-		i_ret = select(maxfdp, &rset, &write, NULL, NULL);
-		
-
-		
-
-
+		i_ret = select(maxfdp, &rset, &wset, NULL, NULL);
+		if(i_ret == 0) /* select timeout */
+			continue;
+		if(i_ret < 0)
+		{
+			if(errno == EINTR)
+				continue;
+			else
+				bail("select error");
+		}
+		/* descriptor is readable or writable */
+		if(FD_ISSET(s, &rset))
+		{
+			memset(fbuf, 0, G_BLOCK_SIZE);
+			z = read(s, fbuf, sizeof(fbuf));
+			if(z == 0)
+				break;
+			if(z < 0)
+			{
+				fprintf(stderr, "read from socket error, readsize: %d, retry\n", z);
+				continue;
+			}
+			sizetowrite = z;
+			usleep(1000);
+			if(write(fd, fbuf, sizetowrite) < 0)
+			{
+				printf("sizetowrite: %d\n", sizetowrite);
+				bail("write to file error");
+			}
+		}
 	}
 	
-	memset(fbuf, 0, G_BLOCK_SIZE);
-	z = read(s, fbuf, sizeof(fbuf));
-	while(z > 0)
-	{
-		if(write(fd, fbuf, z) < 0)
-			bail("write file error");
-		z = read(s, fbuf, sizeof(fbuf));
-		if(z < 0)
-		{
-			printf("Failed pid = %d\n", getpid());
-			bail("read from socket error");
-		}
-		usleep(1000);
-	}
-
 	close(fd);
 	close(s);
 
