@@ -29,20 +29,20 @@
 #   endif
 #endif
 
-static const ::std::string __CST__CallbackReceiver__callback_name = "callback";
+static const ::std::string __Demo__CallbackReceiver__callback_name = "callback";
 
-static const ::std::string __CST__CallbackSender__initiateCallback_name = "initiateCallback";
+static const ::std::string __Demo__CallbackSender__initiateCallback_name = "initiateCallback";
 
-static const ::std::string __CST__CallbackSender__shutdown_name = "shutdown";
+static const ::std::string __Demo__CallbackSender__shutdown_name = "shutdown";
 
-::Ice::Object* IceInternal::upCast(::CST::CallbackReceiver* p) { return p; }
-::IceProxy::Ice::Object* IceInternal::upCast(::IceProxy::CST::CallbackReceiver* p) { return p; }
+::Ice::Object* IceInternal::upCast(::Demo::CallbackReceiver* p) { return p; }
+::IceProxy::Ice::Object* IceInternal::upCast(::IceProxy::Demo::CallbackReceiver* p) { return p; }
 
-::Ice::Object* IceInternal::upCast(::CST::CallbackSender* p) { return p; }
-::IceProxy::Ice::Object* IceInternal::upCast(::IceProxy::CST::CallbackSender* p) { return p; }
+::Ice::Object* IceInternal::upCast(::Demo::CallbackSender* p) { return p; }
+::IceProxy::Ice::Object* IceInternal::upCast(::IceProxy::Demo::CallbackSender* p) { return p; }
 
 void
-CST::__read(::IceInternal::BasicStream* __is, ::CST::CallbackReceiverPrx& v)
+Demo::__read(::IceInternal::BasicStream* __is, ::Demo::CallbackReceiverPrx& v)
 {
     ::Ice::ObjectPrx proxy;
     __is->read(proxy);
@@ -52,13 +52,13 @@ CST::__read(::IceInternal::BasicStream* __is, ::CST::CallbackReceiverPrx& v)
     }
     else
     {
-        v = new ::IceProxy::CST::CallbackReceiver;
+        v = new ::IceProxy::Demo::CallbackReceiver;
         v->__copyFrom(proxy);
     }
 }
 
 void
-CST::__read(::IceInternal::BasicStream* __is, ::CST::CallbackSenderPrx& v)
+Demo::__read(::IceInternal::BasicStream* __is, ::Demo::CallbackSenderPrx& v)
 {
     ::Ice::ObjectPrx proxy;
     __is->read(proxy);
@@ -68,13 +68,13 @@ CST::__read(::IceInternal::BasicStream* __is, ::CST::CallbackSenderPrx& v)
     }
     else
     {
-        v = new ::IceProxy::CST::CallbackSender;
+        v = new ::IceProxy::Demo::CallbackSender;
         v->__copyFrom(proxy);
     }
 }
 
 void
-IceProxy::CST::CallbackReceiver::callback(const ::Ice::Context* __ctx)
+IceProxy::Demo::CallbackReceiver::callback(const ::std::string& data, const ::Ice::Context* __ctx)
 {
     int __cnt = 0;
     while(true)
@@ -86,8 +86,8 @@ IceProxy::CST::CallbackReceiver::callback(const ::Ice::Context* __ctx)
             IceUtil::DummyBCC dummy;
 #endif
             __delBase = __getDelegate(false);
-            ::IceDelegate::CST::CallbackReceiver* __del = dynamic_cast< ::IceDelegate::CST::CallbackReceiver*>(__delBase.get());
-            __del->callback(__ctx);
+            ::IceDelegate::Demo::CallbackReceiver* __del = dynamic_cast< ::IceDelegate::Demo::CallbackReceiver*>(__delBase.get());
+            __del->callback(data, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
@@ -102,31 +102,31 @@ IceProxy::CST::CallbackReceiver::callback(const ::Ice::Context* __ctx)
 }
 
 const ::std::string&
-IceProxy::CST::CallbackReceiver::ice_staticId()
+IceProxy::Demo::CallbackReceiver::ice_staticId()
 {
-    return ::CST::CallbackReceiver::ice_staticId();
+    return ::Demo::CallbackReceiver::ice_staticId();
 }
 
 ::IceInternal::Handle< ::IceDelegateM::Ice::Object>
-IceProxy::CST::CallbackReceiver::__createDelegateM()
+IceProxy::Demo::CallbackReceiver::__createDelegateM()
 {
-    return ::IceInternal::Handle< ::IceDelegateM::Ice::Object>(new ::IceDelegateM::CST::CallbackReceiver);
+    return ::IceInternal::Handle< ::IceDelegateM::Ice::Object>(new ::IceDelegateM::Demo::CallbackReceiver);
 }
 
 ::IceInternal::Handle< ::IceDelegateD::Ice::Object>
-IceProxy::CST::CallbackReceiver::__createDelegateD()
+IceProxy::Demo::CallbackReceiver::__createDelegateD()
 {
-    return ::IceInternal::Handle< ::IceDelegateD::Ice::Object>(new ::IceDelegateD::CST::CallbackReceiver);
+    return ::IceInternal::Handle< ::IceDelegateD::Ice::Object>(new ::IceDelegateD::Demo::CallbackReceiver);
 }
 
 ::IceProxy::Ice::Object*
-IceProxy::CST::CallbackReceiver::__newInstance() const
+IceProxy::Demo::CallbackReceiver::__newInstance() const
 {
     return new CallbackReceiver;
 }
 
 void
-IceProxy::CST::CallbackSender::initiateCallback(const ::CST::CallbackReceiverPrx& proxy, const ::Ice::Context* __ctx)
+IceProxy::Demo::CallbackSender::initiateCallback(const ::Demo::CallbackReceiverPrx& proxy, const ::Ice::Context* __ctx)
 {
     int __cnt = 0;
     while(true)
@@ -138,7 +138,7 @@ IceProxy::CST::CallbackSender::initiateCallback(const ::CST::CallbackReceiverPrx
             IceUtil::DummyBCC dummy;
 #endif
             __delBase = __getDelegate(false);
-            ::IceDelegate::CST::CallbackSender* __del = dynamic_cast< ::IceDelegate::CST::CallbackSender*>(__delBase.get());
+            ::IceDelegate::Demo::CallbackSender* __del = dynamic_cast< ::IceDelegate::Demo::CallbackSender*>(__delBase.get());
             __del->initiateCallback(proxy, __ctx);
             return;
         }
@@ -154,7 +154,7 @@ IceProxy::CST::CallbackSender::initiateCallback(const ::CST::CallbackReceiverPrx
 }
 
 void
-IceProxy::CST::CallbackSender::shutdown(const ::Ice::Context* __ctx)
+IceProxy::Demo::CallbackSender::shutdown(const ::Ice::Context* __ctx)
 {
     int __cnt = 0;
     while(true)
@@ -166,7 +166,7 @@ IceProxy::CST::CallbackSender::shutdown(const ::Ice::Context* __ctx)
             IceUtil::DummyBCC dummy;
 #endif
             __delBase = __getDelegate(false);
-            ::IceDelegate::CST::CallbackSender* __del = dynamic_cast< ::IceDelegate::CST::CallbackSender*>(__delBase.get());
+            ::IceDelegate::Demo::CallbackSender* __del = dynamic_cast< ::IceDelegate::Demo::CallbackSender*>(__delBase.get());
             __del->shutdown(__ctx);
             return;
         }
@@ -182,33 +182,42 @@ IceProxy::CST::CallbackSender::shutdown(const ::Ice::Context* __ctx)
 }
 
 const ::std::string&
-IceProxy::CST::CallbackSender::ice_staticId()
+IceProxy::Demo::CallbackSender::ice_staticId()
 {
-    return ::CST::CallbackSender::ice_staticId();
+    return ::Demo::CallbackSender::ice_staticId();
 }
 
 ::IceInternal::Handle< ::IceDelegateM::Ice::Object>
-IceProxy::CST::CallbackSender::__createDelegateM()
+IceProxy::Demo::CallbackSender::__createDelegateM()
 {
-    return ::IceInternal::Handle< ::IceDelegateM::Ice::Object>(new ::IceDelegateM::CST::CallbackSender);
+    return ::IceInternal::Handle< ::IceDelegateM::Ice::Object>(new ::IceDelegateM::Demo::CallbackSender);
 }
 
 ::IceInternal::Handle< ::IceDelegateD::Ice::Object>
-IceProxy::CST::CallbackSender::__createDelegateD()
+IceProxy::Demo::CallbackSender::__createDelegateD()
 {
-    return ::IceInternal::Handle< ::IceDelegateD::Ice::Object>(new ::IceDelegateD::CST::CallbackSender);
+    return ::IceInternal::Handle< ::IceDelegateD::Ice::Object>(new ::IceDelegateD::Demo::CallbackSender);
 }
 
 ::IceProxy::Ice::Object*
-IceProxy::CST::CallbackSender::__newInstance() const
+IceProxy::Demo::CallbackSender::__newInstance() const
 {
     return new CallbackSender;
 }
 
 void
-IceDelegateM::CST::CallbackReceiver::callback(const ::Ice::Context* __context)
+IceDelegateM::Demo::CallbackReceiver::callback(const ::std::string& data, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__handler.get(), __CST__CallbackReceiver__callback_name, ::Ice::Normal, __context);
+    ::IceInternal::Outgoing __og(__handler.get(), __Demo__CallbackReceiver__callback_name, ::Ice::Normal, __context);
+    try
+    {
+        ::IceInternal::BasicStream* __os = __og.os();
+        __os->write(data);
+    }
+    catch(const ::Ice::LocalException& __ex)
+    {
+        __og.abort(__ex);
+    }
     bool __ok = __og.invoke();
     if(!__og.is()->b.empty())
     {
@@ -236,9 +245,9 @@ IceDelegateM::CST::CallbackReceiver::callback(const ::Ice::Context* __context)
 }
 
 void
-IceDelegateM::CST::CallbackSender::initiateCallback(const ::CST::CallbackReceiverPrx& proxy, const ::Ice::Context* __context)
+IceDelegateM::Demo::CallbackSender::initiateCallback(const ::Demo::CallbackReceiverPrx& proxy, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__handler.get(), __CST__CallbackSender__initiateCallback_name, ::Ice::Normal, __context);
+    ::IceInternal::Outgoing __og(__handler.get(), __Demo__CallbackSender__initiateCallback_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -275,9 +284,9 @@ IceDelegateM::CST::CallbackSender::initiateCallback(const ::CST::CallbackReceive
 }
 
 void
-IceDelegateM::CST::CallbackSender::shutdown(const ::Ice::Context* __context)
+IceDelegateM::Demo::CallbackSender::shutdown(const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__handler.get(), __CST__CallbackSender__shutdown_name, ::Ice::Normal, __context);
+    ::IceInternal::Outgoing __og(__handler.get(), __Demo__CallbackSender__shutdown_name, ::Ice::Normal, __context);
     bool __ok = __og.invoke();
     if(!__og.is()->b.empty())
     {
@@ -305,38 +314,40 @@ IceDelegateM::CST::CallbackSender::shutdown(const ::Ice::Context* __context)
 }
 
 void
-IceDelegateD::CST::CallbackReceiver::callback(const ::Ice::Context* __context)
+IceDelegateD::Demo::CallbackReceiver::callback(const ::std::string& data, const ::Ice::Context* __context)
 {
     class _DirectI : public ::IceInternal::Direct
     {
     public:
 
-        _DirectI(const ::Ice::Current& __current) : 
-            ::IceInternal::Direct(__current)
+        _DirectI(const ::std::string& data, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_data(data)
         {
         }
         
         virtual ::Ice::DispatchStatus
         run(::Ice::Object* object)
         {
-            ::CST::CallbackReceiver* servant = dynamic_cast< ::CST::CallbackReceiver*>(object);
+            ::Demo::CallbackReceiver* servant = dynamic_cast< ::Demo::CallbackReceiver*>(object);
             if(!servant)
             {
                 throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
-            servant->callback(_current);
+            servant->callback(_m_data, _current);
             return ::Ice::DispatchOK;
         }
         
     private:
         
+        const ::std::string& _m_data;
     };
     
     ::Ice::Current __current;
-    __initCurrent(__current, __CST__CallbackReceiver__callback_name, ::Ice::Normal, __context);
+    __initCurrent(__current, __Demo__CallbackReceiver__callback_name, ::Ice::Normal, __context);
     try
     {
-        _DirectI __direct(__current);
+        _DirectI __direct(data, __current);
         try
         {
             __direct.servant()->__collocDispatch(__direct);
@@ -367,13 +378,13 @@ IceDelegateD::CST::CallbackReceiver::callback(const ::Ice::Context* __context)
 }
 
 void
-IceDelegateD::CST::CallbackSender::initiateCallback(const ::CST::CallbackReceiverPrx& proxy, const ::Ice::Context* __context)
+IceDelegateD::Demo::CallbackSender::initiateCallback(const ::Demo::CallbackReceiverPrx& proxy, const ::Ice::Context* __context)
 {
     class _DirectI : public ::IceInternal::Direct
     {
     public:
 
-        _DirectI(const ::CST::CallbackReceiverPrx& proxy, const ::Ice::Current& __current) : 
+        _DirectI(const ::Demo::CallbackReceiverPrx& proxy, const ::Ice::Current& __current) : 
             ::IceInternal::Direct(__current),
             _m_proxy(proxy)
         {
@@ -382,7 +393,7 @@ IceDelegateD::CST::CallbackSender::initiateCallback(const ::CST::CallbackReceive
         virtual ::Ice::DispatchStatus
         run(::Ice::Object* object)
         {
-            ::CST::CallbackSender* servant = dynamic_cast< ::CST::CallbackSender*>(object);
+            ::Demo::CallbackSender* servant = dynamic_cast< ::Demo::CallbackSender*>(object);
             if(!servant)
             {
                 throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
@@ -393,11 +404,11 @@ IceDelegateD::CST::CallbackSender::initiateCallback(const ::CST::CallbackReceive
         
     private:
         
-        const ::CST::CallbackReceiverPrx& _m_proxy;
+        const ::Demo::CallbackReceiverPrx& _m_proxy;
     };
     
     ::Ice::Current __current;
-    __initCurrent(__current, __CST__CallbackSender__initiateCallback_name, ::Ice::Normal, __context);
+    __initCurrent(__current, __Demo__CallbackSender__initiateCallback_name, ::Ice::Normal, __context);
     try
     {
         _DirectI __direct(proxy, __current);
@@ -431,7 +442,7 @@ IceDelegateD::CST::CallbackSender::initiateCallback(const ::CST::CallbackReceive
 }
 
 void
-IceDelegateD::CST::CallbackSender::shutdown(const ::Ice::Context* __context)
+IceDelegateD::Demo::CallbackSender::shutdown(const ::Ice::Context* __context)
 {
     class _DirectI : public ::IceInternal::Direct
     {
@@ -445,7 +456,7 @@ IceDelegateD::CST::CallbackSender::shutdown(const ::Ice::Context* __context)
         virtual ::Ice::DispatchStatus
         run(::Ice::Object* object)
         {
-            ::CST::CallbackSender* servant = dynamic_cast< ::CST::CallbackSender*>(object);
+            ::Demo::CallbackSender* servant = dynamic_cast< ::Demo::CallbackSender*>(object);
             if(!servant)
             {
                 throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
@@ -459,7 +470,7 @@ IceDelegateD::CST::CallbackSender::shutdown(const ::Ice::Context* __context)
     };
     
     ::Ice::Current __current;
-    __initCurrent(__current, __CST__CallbackSender__shutdown_name, ::Ice::Normal, __context);
+    __initCurrent(__current, __Demo__CallbackSender__shutdown_name, ::Ice::Normal, __context);
     try
     {
         _DirectI __direct(__current);
@@ -493,52 +504,56 @@ IceDelegateD::CST::CallbackSender::shutdown(const ::Ice::Context* __context)
 }
 
 ::Ice::ObjectPtr
-CST::CallbackReceiver::ice_clone() const
+Demo::CallbackReceiver::ice_clone() const
 {
     throw ::Ice::CloneNotImplementedException(__FILE__, __LINE__);
     return 0; // to avoid a warning with some compilers
 }
 
-static const ::std::string __CST__CallbackReceiver_ids[2] =
+static const ::std::string __Demo__CallbackReceiver_ids[2] =
 {
-    "::CST::CallbackReceiver",
+    "::Demo::CallbackReceiver",
     "::Ice::Object"
 };
 
 bool
-CST::CallbackReceiver::ice_isA(const ::std::string& _s, const ::Ice::Current&) const
+Demo::CallbackReceiver::ice_isA(const ::std::string& _s, const ::Ice::Current&) const
 {
-    return ::std::binary_search(__CST__CallbackReceiver_ids, __CST__CallbackReceiver_ids + 2, _s);
+    return ::std::binary_search(__Demo__CallbackReceiver_ids, __Demo__CallbackReceiver_ids + 2, _s);
 }
 
 ::std::vector< ::std::string>
-CST::CallbackReceiver::ice_ids(const ::Ice::Current&) const
+Demo::CallbackReceiver::ice_ids(const ::Ice::Current&) const
 {
-    return ::std::vector< ::std::string>(&__CST__CallbackReceiver_ids[0], &__CST__CallbackReceiver_ids[2]);
+    return ::std::vector< ::std::string>(&__Demo__CallbackReceiver_ids[0], &__Demo__CallbackReceiver_ids[2]);
 }
 
 const ::std::string&
-CST::CallbackReceiver::ice_id(const ::Ice::Current&) const
+Demo::CallbackReceiver::ice_id(const ::Ice::Current&) const
 {
-    return __CST__CallbackReceiver_ids[0];
+    return __Demo__CallbackReceiver_ids[0];
 }
 
 const ::std::string&
-CST::CallbackReceiver::ice_staticId()
+Demo::CallbackReceiver::ice_staticId()
 {
-    return __CST__CallbackReceiver_ids[0];
+    return __Demo__CallbackReceiver_ids[0];
 }
 
 ::Ice::DispatchStatus
-CST::CallbackReceiver::___callback(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
+Demo::CallbackReceiver::___callback(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
-    __inS.is()->skipEmptyEncaps();
-    callback(__current);
+    ::IceInternal::BasicStream* __is = __inS.is();
+    __is->startReadEncaps();
+    ::std::string data;
+    __is->read(data);
+    __is->endReadEncaps();
+    callback(data, __current);
     return ::Ice::DispatchOK;
 }
 
-static ::std::string __CST__CallbackReceiver_all[] =
+static ::std::string __Demo__CallbackReceiver_all[] =
 {
     "callback",
     "ice_id",
@@ -548,15 +563,15 @@ static ::std::string __CST__CallbackReceiver_all[] =
 };
 
 ::Ice::DispatchStatus
-CST::CallbackReceiver::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
+Demo::CallbackReceiver::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
 {
-    ::std::pair< ::std::string*, ::std::string*> r = ::std::equal_range(__CST__CallbackReceiver_all, __CST__CallbackReceiver_all + 5, current.operation);
+    ::std::pair< ::std::string*, ::std::string*> r = ::std::equal_range(__Demo__CallbackReceiver_all, __Demo__CallbackReceiver_all + 5, current.operation);
     if(r.first == r.second)
     {
         throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
     }
 
-    switch(r.first - __CST__CallbackReceiver_all)
+    switch(r.first - __Demo__CallbackReceiver_all)
     {
         case 0:
         {
@@ -585,7 +600,7 @@ CST::CallbackReceiver::__dispatch(::IceInternal::Incoming& in, const ::Ice::Curr
 }
 
 void
-CST::CallbackReceiver::__write(::IceInternal::BasicStream* __os) const
+Demo::CallbackReceiver::__write(::IceInternal::BasicStream* __os) const
 {
     __os->writeTypeId(ice_staticId());
     __os->startWriteSlice();
@@ -598,7 +613,7 @@ CST::CallbackReceiver::__write(::IceInternal::BasicStream* __os) const
 }
 
 void
-CST::CallbackReceiver::__read(::IceInternal::BasicStream* __is, bool __rid)
+Demo::CallbackReceiver::__read(::IceInternal::BasicStream* __is, bool __rid)
 {
     if(__rid)
     {
@@ -615,97 +630,97 @@ CST::CallbackReceiver::__read(::IceInternal::BasicStream* __is, bool __rid)
 }
 
 void
-CST::CallbackReceiver::__write(const ::Ice::OutputStreamPtr&) const
+Demo::CallbackReceiver::__write(const ::Ice::OutputStreamPtr&) const
 {
     Ice::MarshalException ex(__FILE__, __LINE__);
-    ex.reason = "type CST::CallbackReceiver was not generated with stream support";
+    ex.reason = "type Demo::CallbackReceiver was not generated with stream support";
     throw ex;
 }
 
 void
-CST::CallbackReceiver::__read(const ::Ice::InputStreamPtr&, bool)
+Demo::CallbackReceiver::__read(const ::Ice::InputStreamPtr&, bool)
 {
     Ice::MarshalException ex(__FILE__, __LINE__);
-    ex.reason = "type CST::CallbackReceiver was not generated with stream support";
+    ex.reason = "type Demo::CallbackReceiver was not generated with stream support";
     throw ex;
 }
 
 void 
-CST::__patch__CallbackReceiverPtr(void* __addr, ::Ice::ObjectPtr& v)
+Demo::__patch__CallbackReceiverPtr(void* __addr, ::Ice::ObjectPtr& v)
 {
-    ::CST::CallbackReceiverPtr* p = static_cast< ::CST::CallbackReceiverPtr*>(__addr);
+    ::Demo::CallbackReceiverPtr* p = static_cast< ::Demo::CallbackReceiverPtr*>(__addr);
     assert(p);
-    *p = ::CST::CallbackReceiverPtr::dynamicCast(v);
+    *p = ::Demo::CallbackReceiverPtr::dynamicCast(v);
     if(v && !*p)
     {
-        IceInternal::Ex::throwUOE(::CST::CallbackReceiver::ice_staticId(), v->ice_id());
+        IceInternal::Ex::throwUOE(::Demo::CallbackReceiver::ice_staticId(), v->ice_id());
     }
 }
 
 bool
-CST::operator==(const ::CST::CallbackReceiver& l, const ::CST::CallbackReceiver& r)
+Demo::operator==(const ::Demo::CallbackReceiver& l, const ::Demo::CallbackReceiver& r)
 {
     return static_cast<const ::Ice::Object&>(l) == static_cast<const ::Ice::Object&>(r);
 }
 
 bool
-CST::operator<(const ::CST::CallbackReceiver& l, const ::CST::CallbackReceiver& r)
+Demo::operator<(const ::Demo::CallbackReceiver& l, const ::Demo::CallbackReceiver& r)
 {
     return static_cast<const ::Ice::Object&>(l) < static_cast<const ::Ice::Object&>(r);
 }
 
 ::Ice::ObjectPtr
-CST::CallbackSender::ice_clone() const
+Demo::CallbackSender::ice_clone() const
 {
     throw ::Ice::CloneNotImplementedException(__FILE__, __LINE__);
     return 0; // to avoid a warning with some compilers
 }
 
-static const ::std::string __CST__CallbackSender_ids[2] =
+static const ::std::string __Demo__CallbackSender_ids[2] =
 {
-    "::CST::CallbackSender",
+    "::Demo::CallbackSender",
     "::Ice::Object"
 };
 
 bool
-CST::CallbackSender::ice_isA(const ::std::string& _s, const ::Ice::Current&) const
+Demo::CallbackSender::ice_isA(const ::std::string& _s, const ::Ice::Current&) const
 {
-    return ::std::binary_search(__CST__CallbackSender_ids, __CST__CallbackSender_ids + 2, _s);
+    return ::std::binary_search(__Demo__CallbackSender_ids, __Demo__CallbackSender_ids + 2, _s);
 }
 
 ::std::vector< ::std::string>
-CST::CallbackSender::ice_ids(const ::Ice::Current&) const
+Demo::CallbackSender::ice_ids(const ::Ice::Current&) const
 {
-    return ::std::vector< ::std::string>(&__CST__CallbackSender_ids[0], &__CST__CallbackSender_ids[2]);
+    return ::std::vector< ::std::string>(&__Demo__CallbackSender_ids[0], &__Demo__CallbackSender_ids[2]);
 }
 
 const ::std::string&
-CST::CallbackSender::ice_id(const ::Ice::Current&) const
+Demo::CallbackSender::ice_id(const ::Ice::Current&) const
 {
-    return __CST__CallbackSender_ids[0];
+    return __Demo__CallbackSender_ids[0];
 }
 
 const ::std::string&
-CST::CallbackSender::ice_staticId()
+Demo::CallbackSender::ice_staticId()
 {
-    return __CST__CallbackSender_ids[0];
+    return __Demo__CallbackSender_ids[0];
 }
 
 ::Ice::DispatchStatus
-CST::CallbackSender::___initiateCallback(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
+Demo::CallbackSender::___initiateCallback(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
     __is->startReadEncaps();
-    ::CST::CallbackReceiverPrx proxy;
-    ::CST::__read(__is, proxy);
+    ::Demo::CallbackReceiverPrx proxy;
+    ::Demo::__read(__is, proxy);
     __is->endReadEncaps();
     initiateCallback(proxy, __current);
     return ::Ice::DispatchOK;
 }
 
 ::Ice::DispatchStatus
-CST::CallbackSender::___shutdown(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
+Demo::CallbackSender::___shutdown(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     __inS.is()->skipEmptyEncaps();
@@ -713,7 +728,7 @@ CST::CallbackSender::___shutdown(::IceInternal::Incoming& __inS, const ::Ice::Cu
     return ::Ice::DispatchOK;
 }
 
-static ::std::string __CST__CallbackSender_all[] =
+static ::std::string __Demo__CallbackSender_all[] =
 {
     "ice_id",
     "ice_ids",
@@ -724,15 +739,15 @@ static ::std::string __CST__CallbackSender_all[] =
 };
 
 ::Ice::DispatchStatus
-CST::CallbackSender::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
+Demo::CallbackSender::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
 {
-    ::std::pair< ::std::string*, ::std::string*> r = ::std::equal_range(__CST__CallbackSender_all, __CST__CallbackSender_all + 6, current.operation);
+    ::std::pair< ::std::string*, ::std::string*> r = ::std::equal_range(__Demo__CallbackSender_all, __Demo__CallbackSender_all + 6, current.operation);
     if(r.first == r.second)
     {
         throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
     }
 
-    switch(r.first - __CST__CallbackSender_all)
+    switch(r.first - __Demo__CallbackSender_all)
     {
         case 0:
         {
@@ -765,7 +780,7 @@ CST::CallbackSender::__dispatch(::IceInternal::Incoming& in, const ::Ice::Curren
 }
 
 void
-CST::CallbackSender::__write(::IceInternal::BasicStream* __os) const
+Demo::CallbackSender::__write(::IceInternal::BasicStream* __os) const
 {
     __os->writeTypeId(ice_staticId());
     __os->startWriteSlice();
@@ -778,7 +793,7 @@ CST::CallbackSender::__write(::IceInternal::BasicStream* __os) const
 }
 
 void
-CST::CallbackSender::__read(::IceInternal::BasicStream* __is, bool __rid)
+Demo::CallbackSender::__read(::IceInternal::BasicStream* __is, bool __rid)
 {
     if(__rid)
     {
@@ -795,41 +810,41 @@ CST::CallbackSender::__read(::IceInternal::BasicStream* __is, bool __rid)
 }
 
 void
-CST::CallbackSender::__write(const ::Ice::OutputStreamPtr&) const
+Demo::CallbackSender::__write(const ::Ice::OutputStreamPtr&) const
 {
     Ice::MarshalException ex(__FILE__, __LINE__);
-    ex.reason = "type CST::CallbackSender was not generated with stream support";
+    ex.reason = "type Demo::CallbackSender was not generated with stream support";
     throw ex;
 }
 
 void
-CST::CallbackSender::__read(const ::Ice::InputStreamPtr&, bool)
+Demo::CallbackSender::__read(const ::Ice::InputStreamPtr&, bool)
 {
     Ice::MarshalException ex(__FILE__, __LINE__);
-    ex.reason = "type CST::CallbackSender was not generated with stream support";
+    ex.reason = "type Demo::CallbackSender was not generated with stream support";
     throw ex;
 }
 
 void 
-CST::__patch__CallbackSenderPtr(void* __addr, ::Ice::ObjectPtr& v)
+Demo::__patch__CallbackSenderPtr(void* __addr, ::Ice::ObjectPtr& v)
 {
-    ::CST::CallbackSenderPtr* p = static_cast< ::CST::CallbackSenderPtr*>(__addr);
+    ::Demo::CallbackSenderPtr* p = static_cast< ::Demo::CallbackSenderPtr*>(__addr);
     assert(p);
-    *p = ::CST::CallbackSenderPtr::dynamicCast(v);
+    *p = ::Demo::CallbackSenderPtr::dynamicCast(v);
     if(v && !*p)
     {
-        IceInternal::Ex::throwUOE(::CST::CallbackSender::ice_staticId(), v->ice_id());
+        IceInternal::Ex::throwUOE(::Demo::CallbackSender::ice_staticId(), v->ice_id());
     }
 }
 
 bool
-CST::operator==(const ::CST::CallbackSender& l, const ::CST::CallbackSender& r)
+Demo::operator==(const ::Demo::CallbackSender& l, const ::Demo::CallbackSender& r)
 {
     return static_cast<const ::Ice::Object&>(l) == static_cast<const ::Ice::Object&>(r);
 }
 
 bool
-CST::operator<(const ::CST::CallbackSender& l, const ::CST::CallbackSender& r)
+Demo::operator<(const ::Demo::CallbackSender& l, const ::Demo::CallbackSender& r)
 {
     return static_cast<const ::Ice::Object&>(l) < static_cast<const ::Ice::Object&>(r);
 }

@@ -41,7 +41,7 @@
 namespace IceProxy
 {
 
-namespace CST
+namespace Demo
 {
 
 class CallbackReceiver;
@@ -52,7 +52,7 @@ class CallbackSender;
 
 }
 
-namespace CST
+namespace Demo
 {
 
 class CallbackReceiver;
@@ -68,25 +68,25 @@ bool operator<(const CallbackSender&, const CallbackSender&);
 namespace IceInternal
 {
 
-::Ice::Object* upCast(::CST::CallbackReceiver*);
-::IceProxy::Ice::Object* upCast(::IceProxy::CST::CallbackReceiver*);
+::Ice::Object* upCast(::Demo::CallbackReceiver*);
+::IceProxy::Ice::Object* upCast(::IceProxy::Demo::CallbackReceiver*);
 
-::Ice::Object* upCast(::CST::CallbackSender*);
-::IceProxy::Ice::Object* upCast(::IceProxy::CST::CallbackSender*);
+::Ice::Object* upCast(::Demo::CallbackSender*);
+::IceProxy::Ice::Object* upCast(::IceProxy::Demo::CallbackSender*);
 
 }
 
-namespace CST
+namespace Demo
 {
 
-typedef ::IceInternal::Handle< ::CST::CallbackReceiver> CallbackReceiverPtr;
-typedef ::IceInternal::ProxyHandle< ::IceProxy::CST::CallbackReceiver> CallbackReceiverPrx;
+typedef ::IceInternal::Handle< ::Demo::CallbackReceiver> CallbackReceiverPtr;
+typedef ::IceInternal::ProxyHandle< ::IceProxy::Demo::CallbackReceiver> CallbackReceiverPrx;
 
 void __read(::IceInternal::BasicStream*, CallbackReceiverPrx&);
 void __patch__CallbackReceiverPtr(void*, ::Ice::ObjectPtr&);
 
-typedef ::IceInternal::Handle< ::CST::CallbackSender> CallbackSenderPtr;
-typedef ::IceInternal::ProxyHandle< ::IceProxy::CST::CallbackSender> CallbackSenderPrx;
+typedef ::IceInternal::Handle< ::Demo::CallbackSender> CallbackSenderPtr;
+typedef ::IceInternal::ProxyHandle< ::IceProxy::Demo::CallbackSender> CallbackSenderPrx;
 
 void __read(::IceInternal::BasicStream*, CallbackSenderPrx&);
 void __patch__CallbackSenderPtr(void*, ::Ice::ObjectPtr&);
@@ -96,25 +96,25 @@ void __patch__CallbackSenderPtr(void*, ::Ice::ObjectPtr&);
 namespace IceProxy
 {
 
-namespace CST
+namespace Demo
 {
 
 class CallbackReceiver : virtual public ::IceProxy::Ice::Object
 {
 public:
 
-    void callback()
+    void callback(const ::std::string& data)
     {
-        callback(0);
+        callback(data, 0);
     }
-    void callback(const ::Ice::Context& __ctx)
+    void callback(const ::std::string& data, const ::Ice::Context& __ctx)
     {
-        callback(&__ctx);
+        callback(data, &__ctx);
     }
     
 private:
 
-    void callback(const ::Ice::Context*);
+    void callback(const ::std::string&, const ::Ice::Context*);
     
 public:
     
@@ -321,18 +321,18 @@ class CallbackSender : virtual public ::IceProxy::Ice::Object
 {
 public:
 
-    void initiateCallback(const ::CST::CallbackReceiverPrx& proxy)
+    void initiateCallback(const ::Demo::CallbackReceiverPrx& proxy)
     {
         initiateCallback(proxy, 0);
     }
-    void initiateCallback(const ::CST::CallbackReceiverPrx& proxy, const ::Ice::Context& __ctx)
+    void initiateCallback(const ::Demo::CallbackReceiverPrx& proxy, const ::Ice::Context& __ctx)
     {
         initiateCallback(proxy, &__ctx);
     }
     
 private:
 
-    void initiateCallback(const ::CST::CallbackReceiverPrx&, const ::Ice::Context*);
+    void initiateCallback(const ::Demo::CallbackReceiverPrx&, const ::Ice::Context*);
     
 public:
 
@@ -557,21 +557,21 @@ private:
 namespace IceDelegate
 {
 
-namespace CST
+namespace Demo
 {
 
 class CallbackReceiver : virtual public ::IceDelegate::Ice::Object
 {
 public:
 
-    virtual void callback(const ::Ice::Context*) = 0;
+    virtual void callback(const ::std::string&, const ::Ice::Context*) = 0;
 };
 
 class CallbackSender : virtual public ::IceDelegate::Ice::Object
 {
 public:
 
-    virtual void initiateCallback(const ::CST::CallbackReceiverPrx&, const ::Ice::Context*) = 0;
+    virtual void initiateCallback(const ::Demo::CallbackReceiverPrx&, const ::Ice::Context*) = 0;
 
     virtual void shutdown(const ::Ice::Context*) = 0;
 };
@@ -583,23 +583,23 @@ public:
 namespace IceDelegateM
 {
 
-namespace CST
+namespace Demo
 {
 
-class CallbackReceiver : virtual public ::IceDelegate::CST::CallbackReceiver,
+class CallbackReceiver : virtual public ::IceDelegate::Demo::CallbackReceiver,
                          virtual public ::IceDelegateM::Ice::Object
 {
 public:
 
-    virtual void callback(const ::Ice::Context*);
+    virtual void callback(const ::std::string&, const ::Ice::Context*);
 };
 
-class CallbackSender : virtual public ::IceDelegate::CST::CallbackSender,
+class CallbackSender : virtual public ::IceDelegate::Demo::CallbackSender,
                        virtual public ::IceDelegateM::Ice::Object
 {
 public:
 
-    virtual void initiateCallback(const ::CST::CallbackReceiverPrx&, const ::Ice::Context*);
+    virtual void initiateCallback(const ::Demo::CallbackReceiverPrx&, const ::Ice::Context*);
 
     virtual void shutdown(const ::Ice::Context*);
 };
@@ -611,23 +611,23 @@ public:
 namespace IceDelegateD
 {
 
-namespace CST
+namespace Demo
 {
 
-class CallbackReceiver : virtual public ::IceDelegate::CST::CallbackReceiver,
+class CallbackReceiver : virtual public ::IceDelegate::Demo::CallbackReceiver,
                          virtual public ::IceDelegateD::Ice::Object
 {
 public:
 
-    virtual void callback(const ::Ice::Context*);
+    virtual void callback(const ::std::string&, const ::Ice::Context*);
 };
 
-class CallbackSender : virtual public ::IceDelegate::CST::CallbackSender,
+class CallbackSender : virtual public ::IceDelegate::Demo::CallbackSender,
                        virtual public ::IceDelegateD::Ice::Object
 {
 public:
 
-    virtual void initiateCallback(const ::CST::CallbackReceiverPrx&, const ::Ice::Context*);
+    virtual void initiateCallback(const ::Demo::CallbackReceiverPrx&, const ::Ice::Context*);
 
     virtual void shutdown(const ::Ice::Context*);
 };
@@ -636,7 +636,7 @@ public:
 
 }
 
-namespace CST
+namespace Demo
 {
 
 class CallbackReceiver : virtual public ::Ice::Object
@@ -653,7 +653,7 @@ public:
     virtual const ::std::string& ice_id(const ::Ice::Current& = ::Ice::Current()) const;
     static const ::std::string& ice_staticId();
 
-    virtual void callback(const ::Ice::Current& = ::Ice::Current()) = 0;
+    virtual void callback(const ::std::string&, const ::Ice::Current& = ::Ice::Current()) = 0;
     ::Ice::DispatchStatus ___callback(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Ice::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
@@ -678,7 +678,7 @@ public:
     virtual const ::std::string& ice_id(const ::Ice::Current& = ::Ice::Current()) const;
     static const ::std::string& ice_staticId();
 
-    virtual void initiateCallback(const ::CST::CallbackReceiverPrx&, const ::Ice::Current& = ::Ice::Current()) = 0;
+    virtual void initiateCallback(const ::Demo::CallbackReceiverPrx&, const ::Ice::Current& = ::Ice::Current()) = 0;
     ::Ice::DispatchStatus ___initiateCallback(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void shutdown(const ::Ice::Current& = ::Ice::Current()) = 0;

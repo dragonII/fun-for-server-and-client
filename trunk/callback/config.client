@@ -2,7 +2,7 @@
 # The client reads this property to create the reference to the
 # "CallbackSender" object in the server.
 #
-CallbackSender.Proxy=callback:tcp -p 10000
+CallbackSender.Proxy=callback:tcp -h 192.168.3.98 -p 10000
 
 #
 # The client creates one single object adapter with the name
