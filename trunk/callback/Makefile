@@ -3,7 +3,6 @@ SERVER		= server
 DEBUG       = -g
 
 LINKLIB		= -L/usr/lib/nptl -lpthread -lrt -L/usr/lib -lIce -lIceUtil
-CFLAGS		= -Wall
 
 TARGETS		= $(CLIENT) $(SERVER)
 
@@ -19,13 +18,13 @@ SRCS		= $(OBJS:.o=.cpp) \
 
 
 
-CPPFLAGS	:= -I. $(CPPFLAGS)
+CPPFLAGS	:= -I. $(CPPFLAGS) -Wall
 
 $(CLIENT): $(OBJS) $(COBJS)
-	$(CXX) -o $@ $(OBJS) $(COBJS) $(DEBUG) $(LINKLIB) 
+	$(CXX) -o $@ $(OBJS) $(COBJS) $(DEBUG) $(CPPFLAGS) $(LINKLIB) 
 
 $(SERVER): $(OBJS) $(SOBJS)
-	$(CXX) -o $@ $(OBJS) $(SOBJS) $(DEBUG) $(LINKLIB) 
+	$(CXX) -o $@ $(OBJS) $(SOBJS) $(DEBUG) $(CPPFLAGS) $(LINKLIB) 
 
 all: $(TARGETS)
 
