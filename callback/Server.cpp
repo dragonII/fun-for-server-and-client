@@ -24,7 +24,7 @@ int CallbackServer::run(int argc, char* argv[])
 		return EXIT_FAILURE;
 	}
 
-	Ice::ObjectAdapterPtr adapter = communicator()->creatObjectAdapter("Callback.Server");
+	Ice::ObjectAdapterPtr adapter = communicator()->createObjectAdapter("Callback.Server");
 	CallbackSenderPtr cbs = new CallbackSenderI;
 	adapter->add(cbs, communicator()->stringToIdentity("callback"));
 	adapter->activate();
