@@ -1,20 +1,53 @@
 #include <Ice/Ice.h>
 #include <CallbackSenderI.h>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 using namespace Ice;
-using namespace Demo;
 
-void CallbackSenderI::initiateCallback(const CallbackReceiverPrx& proxy, const Current& current)
+#define BLOCK_SIZE 1024
+
+void CallbackSenderI::initiateCallback(const Demo::CallbackReceiverPrx& proxy, const Current& current)
 {
-	cout << "initializing the callback" << endl;
-	string data = "JJKASDF98UIQKNMASDKFAEYWU8I9O09uaidsfhn;alksdfj";
-	try
+	Demo::ByteSeq data(BLOCK_SIZE);
+	long read_len = 0;
+	ifstream is;
+	is.open("/data/media_files/Tell.mp3");
+	cout << "initializing the callback, openning file" << endl;
+	if(!is)
 	{
-		proxy->callback(data);
-	}catch(const Exception& ex)
+		cout << "file open failed" << endl;
+	}
+	while(1)
 	{
-		cout << ex << endl;
+		usleep(1000);
+		memset(reinterpret_cast<char*>(&data[0]), 0, BLOCK_SIZE);
+		try
+		{
+			is.read(reinterpret_cast<char*>(&data[0]), BLOCK_SIZE);
+		}
+		catch(ifstream::failure e)
+		{
+			cout << "open/read failed" << endl;
+		}
+		try
+		{
+			proxy->callback(data);
+		}catch(const Exception& ex)
+		{
+			cout << ex << endl;
+			break;
+		}
+		read_len += data.size();
+		if(is.eof())
+		{
+			is.close();
+			cout << "read done, close file" << endl;
+			cout << "totally read: " << read_len << endl;
+			break;
+		}
+
 	}
 }
 

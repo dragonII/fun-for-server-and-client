@@ -74,7 +74,7 @@ Demo::__read(::IceInternal::BasicStream* __is, ::Demo::CallbackSenderPrx& v)
 }
 
 void
-IceProxy::Demo::CallbackReceiver::callback(const ::std::string& data, const ::Ice::Context* __ctx)
+IceProxy::Demo::CallbackReceiver::callback(const ::Demo::ByteSeq& data, const ::Ice::Context* __ctx)
 {
     int __cnt = 0;
     while(true)
@@ -206,13 +206,20 @@ IceProxy::Demo::CallbackSender::__newInstance() const
 }
 
 void
-IceDelegateM::Demo::CallbackReceiver::callback(const ::std::string& data, const ::Ice::Context* __context)
+IceDelegateM::Demo::CallbackReceiver::callback(const ::Demo::ByteSeq& data, const ::Ice::Context* __context)
 {
     ::IceInternal::Outgoing __og(__handler.get(), __Demo__CallbackReceiver__callback_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
-        __os->write(data);
+        if(data.size() == 0)
+        {
+            __os->writeSize(0);
+        }
+        else
+        {
+            __os->write(&data[0], &data[0] + data.size());
+        }
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -314,13 +321,13 @@ IceDelegateM::Demo::CallbackSender::shutdown(const ::Ice::Context* __context)
 }
 
 void
-IceDelegateD::Demo::CallbackReceiver::callback(const ::std::string& data, const ::Ice::Context* __context)
+IceDelegateD::Demo::CallbackReceiver::callback(const ::Demo::ByteSeq& data, const ::Ice::Context* __context)
 {
     class _DirectI : public ::IceInternal::Direct
     {
     public:
 
-        _DirectI(const ::std::string& data, const ::Ice::Current& __current) : 
+        _DirectI(const ::Demo::ByteSeq& data, const ::Ice::Current& __current) : 
             ::IceInternal::Direct(__current),
             _m_data(data)
         {
@@ -340,7 +347,7 @@ IceDelegateD::Demo::CallbackReceiver::callback(const ::std::string& data, const 
         
     private:
         
-        const ::std::string& _m_data;
+        const ::Demo::ByteSeq& _m_data;
     };
     
     ::Ice::Current __current;
@@ -546,8 +553,10 @@ Demo::CallbackReceiver::___callback(::IceInternal::Incoming& __inS, const ::Ice:
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
     __is->startReadEncaps();
-    ::std::string data;
-    __is->read(data);
+    ::Demo::ByteSeq data;
+    ::std::pair<const ::Ice::Byte*, const ::Ice::Byte*> ___data;
+    __is->read(___data);
+    ::std::vector< ::Ice::Byte>(___data.first, ___data.second).swap(data);
     __is->endReadEncaps();
     callback(data, __current);
     return ::Ice::DispatchOK;

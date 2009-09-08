@@ -1,8 +1,10 @@
 module Demo
 {
+
+	sequence <byte> ByteSeq;
 	interface CallbackReceiver
 	{
-		void callback(string data);
+		void callback(ByteSeq data);
 	};
 
 	interface CallbackSender

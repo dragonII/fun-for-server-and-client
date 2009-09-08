@@ -93,6 +93,13 @@ void __patch__CallbackSenderPtr(void*, ::Ice::ObjectPtr&);
 
 }
 
+namespace Demo
+{
+
+typedef ::std::vector< ::Ice::Byte> ByteSeq;
+
+}
+
 namespace IceProxy
 {
 
@@ -103,18 +110,18 @@ class CallbackReceiver : virtual public ::IceProxy::Ice::Object
 {
 public:
 
-    void callback(const ::std::string& data)
+    void callback(const ::Demo::ByteSeq& data)
     {
         callback(data, 0);
     }
-    void callback(const ::std::string& data, const ::Ice::Context& __ctx)
+    void callback(const ::Demo::ByteSeq& data, const ::Ice::Context& __ctx)
     {
         callback(data, &__ctx);
     }
     
 private:
 
-    void callback(const ::std::string&, const ::Ice::Context*);
+    void callback(const ::Demo::ByteSeq&, const ::Ice::Context*);
     
 public:
     
@@ -564,7 +571,7 @@ class CallbackReceiver : virtual public ::IceDelegate::Ice::Object
 {
 public:
 
-    virtual void callback(const ::std::string&, const ::Ice::Context*) = 0;
+    virtual void callback(const ::Demo::ByteSeq&, const ::Ice::Context*) = 0;
 };
 
 class CallbackSender : virtual public ::IceDelegate::Ice::Object
@@ -591,7 +598,7 @@ class CallbackReceiver : virtual public ::IceDelegate::Demo::CallbackReceiver,
 {
 public:
 
-    virtual void callback(const ::std::string&, const ::Ice::Context*);
+    virtual void callback(const ::Demo::ByteSeq&, const ::Ice::Context*);
 };
 
 class CallbackSender : virtual public ::IceDelegate::Demo::CallbackSender,
@@ -619,7 +626,7 @@ class CallbackReceiver : virtual public ::IceDelegate::Demo::CallbackReceiver,
 {
 public:
 
-    virtual void callback(const ::std::string&, const ::Ice::Context*);
+    virtual void callback(const ::Demo::ByteSeq&, const ::Ice::Context*);
 };
 
 class CallbackSender : virtual public ::IceDelegate::Demo::CallbackSender,
@@ -653,7 +660,7 @@ public:
     virtual const ::std::string& ice_id(const ::Ice::Current& = ::Ice::Current()) const;
     static const ::std::string& ice_staticId();
 
-    virtual void callback(const ::std::string&, const ::Ice::Current& = ::Ice::Current()) = 0;
+    virtual void callback(const ::Demo::ByteSeq&, const ::Ice::Current& = ::Ice::Current()) = 0;
     ::Ice::DispatchStatus ___callback(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Ice::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
