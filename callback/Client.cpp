@@ -103,8 +103,10 @@ int CallbackClient::run(int argc, char* argv[])
 		return EXIT_FAILURE;
 	}
 
+	//default: twoway, no timeout, no secure
 	CallbackSenderPrx sProxy = CallbackSenderPrx::checkedCast(
-			communicator()->propertyToProxy("CallbackSender.Proxy")->ice_twoway()->ice_timeout(-1)->ice_secure(false));
+			//communicator()->propertyToProxy("CallbackSender.Proxy")->ice_twoway()->ice_timeout(-1)->ice_secure(false));
+			communicator()->propertyToProxy("CallbackSender.Proxy"));
 	if(!sProxy)
 	{
 		cerr << appName() << ": Invalid proxy" << endl;
