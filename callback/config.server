@@ -10,6 +10,7 @@ Callback.Server.Endpoints=tcp -h * -p 10000
 #
 Ice.Warn.Connections=1
 
+Ice.ThreadPool.Server.Size=5
 #
 # Network Tracing
 #
