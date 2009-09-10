@@ -12,8 +12,12 @@ void RequestReceiverI::getCtx(const Current& c)
 
 unsigned int RequestReceiverI::parseCtx(const Current& c)
 {
-	string dst = c.ctx.first();
-	string op  = c.ctx.second();
+	//string dst = c.ctx.first();
+	//string op  = c.ctx.second();
+
+	_ctx = c.ctx;
+	string dst = _ctx.first();
+	string op  = _ctx.second();
 
 	unsigned int dst_code = 0;
 	unsigned int op_code  = 0;
