@@ -19,6 +19,7 @@ ICE2CPP:
 
 .cpp.o:$(ICE2CPP)
 	$(CXX) -c $(CPPFLAGS) $(INCLUDEDIR) $(SHARE) $<
+$(OBJS):$(ICE2CPP)
 
 $(TARGET):$(OBJS)
 	$(CXX)  $(CPPFLAGS) $(INCLUDEDIR) $(SHARE) $(LINKLIB) -o $@ $(OBJS)
@@ -30,7 +31,7 @@ $(TARGET):$(OBJS)
 #$(SERVER): $(OBJS) $(SOBJS)
 #	$(CXX) -o $@ $(OBJS) $(SOBJS) $(DEBUG) $(CPPFLAGS) $(LINKLIB) 
 #
-all: $(TARGET)
+all: $(ICE2CPP) $(TARGET)
 
 clean:
 	rm -f *.o $(TARGET)
