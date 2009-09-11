@@ -16,8 +16,8 @@ unsigned int RequestReceiverI::parseCtx(const Current& c)
 	//string op  = c.ctx.second();
 
 	_ctx = c.ctx;
-	string dst = _ctx.first();
-	string op  = _ctx.second();
+	string dst = _ctx.first;
+	string op  = _ctx.second;
 
 	unsigned int dst_code = 0;
 	unsigned int op_code  = 0;
