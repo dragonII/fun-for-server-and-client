@@ -9,7 +9,7 @@ void DictReceiverI::receiveDict(const TestMap& dict, const DictSenderPrx&, const
 	TestMap t_dict = dict;
 	//TestMap::const_iterator it = t_dict;
 
-	map<string, int>::iterator it = t_dict.begin();
+	map<string, int>::const_iterator it = t_dict.begin();
 	cout << "it.first: " << it->first << endl;
 	cout << "it.second: " << it->second << endl;
 }
