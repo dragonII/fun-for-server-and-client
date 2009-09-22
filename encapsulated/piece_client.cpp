@@ -15,7 +15,7 @@ void Iabs::open(int argc, char* argv[])
 	Ice::CommunicatorPtr ic;
 	
 	ic = Ice::initialize(argc, argv);
-	Ice::ObjectPrx base = ic->stringToProxy("callback:tcp -h 192.168.3.98 -p 10000");
+	Ice::ObjectPrx base = ic->stringToProxy("callback1:tcp -h 192.168.3.98 -p 10000");
 	_sProxy = CallbackSenderPrx::checkedCast(base);
 	if(!_sProxy)
 		throw "Invalid _sProxy";
