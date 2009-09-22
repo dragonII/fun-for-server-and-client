@@ -14,7 +14,6 @@ class CallbackReceiverI : public CallbackReceiver
 		CallbackReceiverI();
 		virtual void callback(const ByteSeq& data, int leng, const Ice::Current&)
 		{
-			//data_len += data.size();
 			data_len += leng;
 			copy(data.begin(), data.end(), cur_pos);
 			cur_pos += data.size();
@@ -102,7 +101,6 @@ int CallbackClient::run(int argc, char* argv[])
 
 	//default: twoway, no timeout, no secure
 	CallbackSenderPrx sProxy = CallbackSenderPrx::checkedCast(
-			//communicator()->propertyToProxy("CallbackSender.Proxy")->ice_twoway()->ice_timeout(-1)->ice_secure(false));
 			communicator()->propertyToProxy("CallbackSender.Proxy"));
 	if(!sProxy)
 	{
