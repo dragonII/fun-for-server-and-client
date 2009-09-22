@@ -12,6 +12,7 @@ void CallbackSenderI::initiateCallback(const Demo::CallbackReceiverPrx& proxy, c
 {
 	Demo::ByteSeq data(BLOCK_SIZE);
 	long read_len = 0;
+	int count;
 	ifstream is;
 	is.open("/data/media_files/Tell.mp3");
 	cout << "initializing the callback, openning file" << endl;
@@ -22,10 +23,11 @@ void CallbackSenderI::initiateCallback(const Demo::CallbackReceiverPrx& proxy, c
 	while(1)
 	{
 		usleep(1000);
-		memset(reinterpret_cast<char*>(&data[0]), 0, BLOCK_SIZE);
+		data.empty();
 		try
 		{
 			is.read(reinterpret_cast<char*>(&data[0]), BLOCK_SIZE);
+			count = is.gcount();
 		}
 		catch(ifstream::failure e)
 		{
@@ -33,13 +35,14 @@ void CallbackSenderI::initiateCallback(const Demo::CallbackReceiverPrx& proxy, c
 		}
 		try
 		{
-			proxy->callback(data);
+			proxy->callback(data, count);
 		}catch(const Exception& ex)
 		{
 			cout << ex << endl;
 			break;
 		}
-		read_len += data.size();
+		//read_len += data.size();
+		read_len += count;
 		if(is.eof())
 		{
 			is.close();

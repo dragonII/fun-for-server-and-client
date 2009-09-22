@@ -12,14 +12,11 @@ class CallbackReceiverI : public CallbackReceiver
 {
 	public:
 		CallbackReceiverI();
-		virtual void callback(const ByteSeq& data, const Ice::Current&)
+		virtual void callback(const ByteSeq& data, int leng, const Ice::Current&)
 		{
-			data_len += data.size();
+			//data_len += data.size();
+			data_len += leng;
 			copy(data.begin(), data.end(), cur_pos);
-			//for(int i = 0; i < data.size(); i++)
-			//{
-			//	cur_pos[i] = data[i];
-			//}
 			cur_pos += data.size();
 			if(cur_pos >= big_buffer + (BLOCK_SIZE * 1000))
 				saveFile();
