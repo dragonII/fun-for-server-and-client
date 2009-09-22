@@ -4,7 +4,7 @@ module Demo
 	sequence <byte> ByteSeq;
 	interface CallbackReceiver
 	{
-		void callback(ByteSeq data);
+		void callback(ByteSeq data, int len);
 	};
 
 	interface CallbackSender
