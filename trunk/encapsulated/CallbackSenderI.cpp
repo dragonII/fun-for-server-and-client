@@ -2,6 +2,7 @@
 #include <CallbackSenderI.h>
 #include <iostream>
 #include <fstream>
+#include <unistd.h>
 
 using namespace std;
 using namespace Ice;
@@ -14,6 +15,7 @@ void CallbackSenderI::initiateCallback(const Demo::CallbackReceiverPrx& proxy, c
 	
 	try
 	{
+		sleep(30);
 		proxy->callback();
 	}catch(const Exception& ex)
 	{
