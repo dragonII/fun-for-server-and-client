@@ -41,7 +41,6 @@ void CallbackSenderI::initiateCallback(const Demo::CallbackReceiverPrx& proxy, c
 			cout << ex << endl;
 			break;
 		}
-		//read_len += data.size();
 		read_len += count;
 		if(is.eof())
 		{
