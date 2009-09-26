@@ -1,0 +1,5 @@
+StructServer.Proxy=structServer:tcp -h 192.168.3.98 -p 10234
+Struct.Client.Endpoints=tcp
+
+Ice.Warn.Connections=1
+

@@ -1,0 +1,5 @@
+Struct.Server.Endpoints=tcp -h * -p 10234
+
+Ice.ThreadPool.Server.Size=5
+Ice.Warn.Connections=1
+
