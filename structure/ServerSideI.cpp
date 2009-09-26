@@ -13,6 +13,8 @@ ServerSideI::ServerSideI()
 
 void ServerSideI::sendStruct(const ClientSidePrx& proxy, const Ice::Current& c)
 {
+	if(c.con)
+		cout << c.con->toString() << endl;
 	proxy->receiveStruct(_data);
 }
 
