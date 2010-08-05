@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
-  <Document>
-    <Placemark>
-      <name>Entity references example</name>
-      <description>
-	        &lt;h1&gt;Entity references are hard to type!&lt;/h1&gt;
-	        &lt;p&gt;&lt;font color="green"&gt;Text is 
-          &lt;i&gt;more readable&lt;/i&gt; 
-          and &lt;b&gt;easier to write&lt;/b&gt; 
-          when you can avoid using entity references.&lt;/font&gt;&lt;/p&gt;
-      </description>
-      <Point>
-        <coordinates>114.0578180,22.5434470</coordinates>
-      </Point>
-    </Placemark>
-  </Document>
+  <Folder>
+    <name>Ground Overlays</name>
+    <description>Examples of ground overlays</description>
+    <GroundOverlay>
+      <name>Large-scale overlay on terrain</name>
+      <description>Overlay shows Mount Etna erupting 
+          on July 13th, 2001.</description>
+      <Icon>
+        <href>http://code.google.com/apis/kml/documentation/etna.jpg</href>
+      </Icon>
+      <LatLonBox>
+        <north>37.91904192681665</north>
+        <south>37.46543388598137</south>
+        <east>15.35832653742206</east>
+        <west>14.60128369746704</west>
+        <rotation>-0.1556640799496235</rotation>
+      </LatLonBox>
+    </GroundOverlay>
+  </Folder>
 </kml>
